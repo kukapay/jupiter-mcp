@@ -58,7 +58,7 @@ An MCP server for executing token swaps on the Solana blockchain using Jupiter's
     - `inputMint`: Input token mint address (e.g., SOL or token pubkey).
     - `outputMint`: Output token mint address (e.g., USDC or token pubkey).
     - `amount`: Input amount as a string (e.g., "1.23").
-    - `slippageBps`: Slippage tolerance in basis points (e.g., 50 for 0.5%).
+    - `slippageBps`: Slippage tolerance in basis points (e.g., 50 for 0.5%). 
   - **Output**: JSON with `requestId`, `transaction` (base64-encoded), `inputMint`, `outputMint`, `inAmount`, `outAmount`, `price`.
 
 - **`execute-ultra-order`**:
@@ -80,6 +80,7 @@ Below are examples of interacting with the server using natural language prompts
     - `inputMint`: "So11111111111111111111111111111111111111112" (SOL)
     - `outputMint`: "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v" (USDC)
     - `amount`: "1.23"
+    - `slippageBps`: 50
 - **Response**:
   ```
   {

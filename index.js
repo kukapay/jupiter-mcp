@@ -34,7 +34,8 @@ server.tool(
   {
     inputMint: z.string().describe("Input token mint address"),
     outputMint: z.string().describe("Output token mint address"),
-    amount: z.string().describe("Input amount as a string (e.g., '1.23')")
+    amount: z.string().describe("Input amount as a string (e.g., '1.23')"),
+    slippageBps: z.number().describe("Slippage tolerance in basis points (e.g., 50 for 0.5%).")
   },
   async ({ inputMint, outputMint, amount, slippageBps }) => {
     try {
