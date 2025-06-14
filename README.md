@@ -22,7 +22,7 @@ An MCP server for executing token swaps on the Solana blockchain using Jupiter's
 
 1. **Clone the Repository**:
    ```bash
-   git clone https://github.com/your-username/jupiter-mcp.git
+   git clone https://github.com/kukapay/jupiter-mcp.git
    cd jupiter-mcp
    ```
 
