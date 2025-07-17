@@ -1,3 +1,5 @@
+[![MseeP.ai Security Assessment Badge](https://mseep.net/pr/kukapay-jupiter-mcp-badge.png)](https://mseep.ai/app/kukapay-jupiter-mcp)
+
 # Jupiter MCP Server
 
 An MCP server for executing token swaps on the Solana blockchain using Jupiter's new Ultra API. 
