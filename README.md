@@ -6,6 +6,10 @@ An MCP server for executing token swaps on the Solana blockchain using Jupiter's
 ![Node.js](https://img.shields.io/badge/Node.js-18.x-green.svg)
 ![Status](https://img.shields.io/badge/status-active-brightgreen.svg)
 
+<a href="https://glama.ai/mcp/servers/@kukapay/jupiter-mcp">
+  <img width="380" height="200" src="https://glama.ai/mcp/servers/@kukapay/jupiter-mcp/badge" alt="Jupiter MCP server" />
+</a>
+
 ## Features
 
 - Fetch swap orders from Jupiter's Ultra API, combining DEX routing and RFQ (Request for Quote) for optimal pricing.
@@ -125,5 +129,3 @@ Below are examples of interacting with the server using natural language prompts
 ## License
 
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
-
-
