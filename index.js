@@ -4,6 +4,7 @@ const { z } = require("zod");
 const { Connection, Keypair, VersionedTransaction, PublicKey} = require("@solana/web3.js");
 const { getMint } = require("@solana/spl-token");
 const bs58 = require("bs58");
+const { checkTokenRugShield, scanWalletUnclaimedRent } = require("./rentshield");
 
 const dotenv = require("dotenv")
 dotenv.config()
@@ -142,6 +143,62 @@ server.tool(
         content: [{
           type: "text",
           text: `Error executing swap: ${error.message}`
+        }],
+        isError: true
+      };
+    }
+  }
+);
+
+
+server.tool(
+  "check-token-rug-shield",
+  "Run a read-only 11-layer pre-buy rug and scam safety check on a Solana token mint via Rent & Rug Shield before requesting or executing a Jupiter swap.",
+  {
+    mint: z.string().describe("Public Solana token mint address (base58). Never pass a private key.")
+  },
+  async ({ mint }) => {
+    try {
+      const report = await checkTokenRugShield(mint);
+      return {
+        content: [{
+          type: "text",
+          text: JSON.stringify(report, null, 2)
+        }]
+      };
+    } catch (error) {
+      return {
+        content: [{
+          type: "text",
+          text: `Error checking token rug shield: ${error.message}`
+        }],
+        isError: true
+      };
+    }
+  }
+);
+
+server.tool(
+  "scan-wallet-unclaimed-rent",
+  "Read-only, non-custodial scan for reclaimable rent-exempt SOL locked in empty SPL and Token-2022 Associated Token Accounts (0% fee on first claim).",
+  {
+    walletAddress: z.string().optional().describe("Optional public Solana wallet address (base58). Defaults to the configured wallet public key. Never pass a private key.")
+  },
+  async ({ walletAddress }) => {
+    try {
+      const targetWallet = walletAddress || walletPublicKey;
+      const result = await scanWalletUnclaimedRent(targetWallet);
+      return {
+        content: [{
+          type: "text",
+          text: JSON.stringify(result, null, 2)
+        }]
+      };
+    } catch (error) {
+      return {
+        content: [{
+          type: "text",
+          text: `Error scanning wallet rent: ${error.message}`
         }],
         isError: true
       };
