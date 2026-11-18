@@ -68,6 +68,20 @@ An MCP server for executing token swaps on the Solana blockchain using Jupiter's
     - `transaction`: Base64-encoded transaction from `get-ultra-order`.
   - **Output**: JSON with `status`, `transactionId`, `slot`, `inputAmountResult`, `outputAmountResult`, `swapEvents`.
 
+
+### Pre-Swap Security & Rent Recovery Tools
+- **`check-token-rug-shield`**:
+  - **Description**: Read-only 11-layer pre-buy rug and scam check on a Solana token mint via [Rent & Rug Shield](https://rentandrugshield.com) before requesting or executing a Jupiter swap.
+  - **Inputs**:
+    - `mint`: Public Solana token mint address (`base58` pubkey only; never pass private keys).
+  - **Output**: JSON with `score` (`0-100`), `safeToBuy`, `verdict`, `layersChecked` (`11`), `checks`, and `reportUrl`.
+
+- **`scan-wallet-unclaimed-rent`**:
+  - **Description**: Non-custodial, read-only scan for reclaimable rent-exempt SOL locked in empty SPL and Token-2022 Associated Token Accounts left behind after swaps (`0%` fee on first claim).
+  - **Inputs**:
+    - `walletAddress` *(optional)*: Public Solana wallet address (`base58` pubkey; defaults to `walletPublicKey`).
+  - **Output**: JSON with `isFirstFreeClaim`, `effectiveFeeBps`, `emptyCount`, `totalReclaimableSol`, and `claimUrl`.
+
 ## Example Interaction
 
 Below are examples of interacting with the server using natural language prompts and expected responses:
